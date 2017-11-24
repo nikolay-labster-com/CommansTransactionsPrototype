@@ -1,0 +1,11 @@
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommandTransactionsPrototype.exe.config
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommandTransactionsPrototype.exe
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommandTransactionsPrototype.pdb
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.csprojResolveAssemblyReference.cache
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.Form1.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.MyInputBox.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.PropEditors.ucMissionPropEditor.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.Properties.Resources.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.csproj.GenerateResource.Cache
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.exe
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommandTransactionsPrototype.pdb

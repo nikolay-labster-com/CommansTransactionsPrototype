@@ -1,0 +1,9 @@
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommansTransactionsPrototype.exe.config
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommansTransactionsPrototype.exe
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\bin\Debug\CommansTransactionsPrototype.pdb
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.csprojResolveAssemblyReference.cache
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.Form1.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.Properties.Resources.resources
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.csproj.GenerateResource.Cache
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.exe
+d:\my\doc\visual studio 2013\Projects\CommansTransactionsPrototype\obj\Debug\CommansTransactionsPrototype.pdb
