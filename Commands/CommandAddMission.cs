@@ -10,36 +10,41 @@ namespace CommandTransactionsPrototype.Commands
 {
 	public class CommandAddMission : ICommand
 	{
-		private readonly TreeView _trv;
+		//private readonly TreeView _trv;
 
 		private readonly Engine _engine;
 		private readonly ITransactionProvider _transactionProvider;
 
 		public CommandAddMission(TreeView trv, Engine engine, ITransactionProvider transactionProvider)
 		{
-			_trv = trv;
+			//_trv = trv;
 			_engine = engine;
 			_transactionProvider = transactionProvider;
 		}
 
-		public bool CanBeExecutedNow
+		//public bool CanBeExecutedNow
+		//{
+		//	get
+		//	{
+		//		var curNode = _trv.SelectedNode;
+		//		if (curNode != null)
+		//		{
+		//			var engine = curNode.Tag as Engine;
+		//			return engine != null;
+		//		}
+		//		return false;
+		//	}
+		//}
+		public bool CanBeExecutedOn(params object[] obj)
 		{
-			get
-			{
-				var curNode = _trv.SelectedNode;
-				if (curNode != null)
-				{
-					var engine = curNode.Tag as Engine;
-					return engine != null;
-				}
-				return false;
-			}
+			var engine = obj[0] as Engine;
+			return engine != null;
 		}
 
 
-		public void InitiateExecution()
+		public void InitiateExecution(params object[] obj)
 		{
-			if (!CanBeExecutedNow)
+			if (!CanBeExecutedOn(obj))
 			{
 				throw new InvalidOperationException("Cannot be executed!");
 			}
@@ -57,5 +62,6 @@ namespace CommandTransactionsPrototype.Commands
 
 			tran.Commit();
 		}
+
 	}
 }

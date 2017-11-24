@@ -9,8 +9,8 @@ namespace CommandTransactionsPrototype.Commands
 {
 	public interface ICommand
 	{
-		bool CanBeExecutedNow { get; }
-		void InitiateExecution();
-		//bool CanBeExecutedOn(object obj);
+		// it seems instead of obj we may have several string/int parameters in real app
+		bool CanBeExecutedOn(params object[] obj);
+		void InitiateExecution(params object[] obj);
 	}
 }

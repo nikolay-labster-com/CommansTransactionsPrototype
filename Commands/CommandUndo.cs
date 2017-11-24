@@ -16,14 +16,17 @@ namespace CommandTransactionsPrototype.Commands
 			_history = history;
 		}
 
-		public bool CanBeExecutedNow
+		public bool CanBeExecutedOn(params object[] obj)
 		{
-			get { return _history.CanUndo(); }
+			return _history.CanUndo();
 		}
 
-		public void InitiateExecution()
+		public void InitiateExecution(params object[] obj)
 		{
-			_history.Undo();
+			if (CanBeExecutedOn(obj))
+			{
+				_history.Undo();
+			}
 		}
 	}
 }

@@ -19,38 +19,7 @@ namespace CommandTransactionsPrototype.Commands
 			_trvHistory = trvHistory;
 		}
 
-		private bool TryGetNextIndex(ref int index)
-		{
-			if (_history.CurrentNode.Children.Count == 1)
-			{
-				index = 0;
-				return true;
-			}
-			var selectedNode = _trvHistory.SelectedNode;
-			if (selectedNode != null)
-			{
-				var histNode = selectedNode.Tag as HistoryTreeNode;
-				if (histNode != null)
-				{
-					if (histNode.Parent == _history.CurrentNode)
-					{
-						index = selectedNode.Index;
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-
-		public bool CanBeExecutedNow
-		{
-			get
-			{
-				int dummy = 0;
-				return _history.CanRedo() && TryGetNextIndex(ref dummy);
-			}
-		}
-		//private bool TryGetNextIndex(HistoryTreeNode histNode, ref int index)
+		//private bool TryGetNextIndex(ref int index)
 		//{
 		//	if (_history.CurrentNode.Children.Count == 1)
 		//	{
@@ -72,16 +41,44 @@ namespace CommandTransactionsPrototype.Commands
 		//	}
 		//	return false;
 		//}
-		//public bool CanBeExecutedOn(object obj)
-		//{
-		//	int dummy = 0;
-		//	return _history.CanRedo() && TryGetNextIndex((HistoryTreeNode) obj, ref dummy);
-		//}
 
-		public void InitiateExecution()
+		//public bool CanBeExecutedNow
+		//{
+		//	get
+		//	{
+		//		int dummy = 0;
+		//		return _history.CanRedo() && TryGetNextIndex(ref dummy);
+		//	}
+		//}
+		private bool TryGetNextIndex(HistoryTreeNode histNode, ref int index)
+		{
+			if (_history.CurrentNode.Children.Count == 1)
+			{
+				index = 0;
+				return true;
+			}
+
+			if (histNode != null)
+			{
+				if (histNode.Parent == _history.CurrentNode)
+				{
+					index = _history.CurrentNode.Children.IndexOf(histNode);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public bool CanBeExecutedOn(params object[] obj)
+		{
+			int dummy = 0;
+			return _history.CanRedo() && TryGetNextIndex((HistoryTreeNode)obj[0], ref dummy);
+		}
+
+		public void InitiateExecution(params object[] obj)
 		{
 			int index = 0;
-			if (TryGetNextIndex(ref index))
+			if (TryGetNextIndex((HistoryTreeNode)obj[0], ref index))
 			{
 				_history.Redo(index);
 			}

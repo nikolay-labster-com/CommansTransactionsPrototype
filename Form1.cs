@@ -18,6 +18,7 @@ namespace CommandTransactionsPrototype
 
 		private StateHistoryTree _history;
 		private ItemToCollectionDictionary<ICommand, IGenericUiElement> _allCommands;
+		private Dictionary<ICommand, Func<object[]>> _paramMakers;
 
 		//private readonly Stack<ICommand> _undoStack = new Stack<ICommand>();
 		//private readonly Stack<ICommand> _redoStack = new Stack<ICommand>();
@@ -44,48 +45,71 @@ namespace CommandTransactionsPrototype
 			}
 		}
 
+		private object GetSelectedNodeTag(TreeView trv)
+		{
+			if (trv.SelectedNode != null)
+			{
+				return trv.SelectedNode.Tag;
+			}
+			return null;
+		}
+
+		private object[] ToArr(params object[] arr)
+		{
+			return arr;
+		}
+
 		private void InitCommands()
 		{
 			_allCommands = new ItemToCollectionDictionary<ICommand, IGenericUiElement>();
-			AssociateCommand(_allCommands, new CommandAddMission(trvModel, _engine, _history),
+			_paramMakers = new Dictionary<ICommand, Func<object[]>>();
+
+			AssociateCommand(new CommandAddMission(trvModel, _engine, _history),
+				() => ToArr(GetSelectedNodeTag(trvModel)),
 				mnuAddMission,
 				btnAddMission);
 
-			AssociateCommand(_allCommands, new CommandDeleteMission(trvModel, _engine, _history),
+			AssociateCommand(new CommandDeleteMission(trvModel, _engine, _history),
+				() => ToArr(GetSelectedNodeTag(trvModel)),
 				mnuDeleteMission);
 
-			AssociateCommand(_allCommands, new CommandAddConversation(trvModel, _engine, _history),
-				mnuAddConversation);
+			//AssociateCommand(_allCommands, new CommandAddConversation(trvModel, _engine, _history),
+			//	mnuAddConversation);
 
-			AssociateCommand(_allCommands, new CommandDeleteConversation(trvModel, _engine, _history),
-				mnuDeleteConversation);
+			//AssociateCommand(_allCommands, new CommandDeleteConversation(trvModel, _engine, _history),
+			//	mnuDeleteConversation);
 
-			AssociateCommand(_allCommands, new CommandUndo(_history),
+			AssociateCommand(new CommandUndo(_history),
+				() => ToArr(),
 				btnUndo);
 
-			AssociateCommand(_allCommands, new CommandRedo(trvHistory, _history),
+			AssociateCommand(new CommandRedo(trvHistory, _history),
+				() => ToArr(GetSelectedNodeTag(trvHistory)),
 				btnRedo);
 
-			AssociateCommand(_allCommands, new CommandAddTask(trvModel, _engine, _history),
-				mnuAddTask);
+			//AssociateCommand(_allCommands, new CommandAddTask(trvModel, _engine, _history),
+			//	mnuAddTask);
 
-			AssociateCommand(_allCommands, new CommandDeleteTask(trvModel, _engine, _history),
-				mnuDeleteTask);
+			//AssociateCommand(_allCommands, new CommandDeleteTask(trvModel, _engine, _history),
+			//	mnuDeleteTask);
 		}
 
 		private void UpdateControlsAvailability()
 		{
 			foreach (var oneKvp in _allCommands.GetAllControls())
 			{
-				oneKvp.Key.Enabled = oneKvp.Value.CanBeExecutedNow;
+				var paramsMaker = _paramMakers[oneKvp.Value];
+				oneKvp.Key.Enabled = oneKvp.Value.CanBeExecutedOn(paramsMaker());
 			}
 		}
 
 		private void AssociateCommand(
-			ItemToCollectionDictionary<ICommand, IGenericUiElement> dict,
 			ICommand command,
+			Func<object[]> paramsMaker,
 			params object[] controls)
 		{
+			_paramMakers.Add(command, paramsMaker);
+
 			foreach (var oneControl in controls)
 			{
 				IGenericUiElement uiElement;
@@ -106,7 +130,7 @@ namespace CommandTransactionsPrototype
 				{
 					try
 					{
-						command.InitiateExecution();
+						command.InitiateExecution(paramsMaker());
 						RefreshTrees();
 						UpdateControlsAvailability();
 					}
@@ -115,7 +139,7 @@ namespace CommandTransactionsPrototype
 						ShowError(ex);
 					}
 				};
-				dict.Add(command, uiElement);
+				_allCommands.Add(command, uiElement);
 			}
 		}
 
