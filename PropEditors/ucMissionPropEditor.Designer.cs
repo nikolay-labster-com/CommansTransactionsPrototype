@@ -33,7 +33,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtDescription = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtId = new System.Windows.Forms.TextBox();
+			this.btnDeleteThisMission = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// txtName
@@ -81,21 +82,33 @@
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Id";
 			// 
-			// textBox1
+			// txtId
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(126, 7);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(240, 26);
-			this.textBox1.TabIndex = 4;
+			this.txtId.Location = new System.Drawing.Point(126, 7);
+			this.txtId.Name = "txtId";
+			this.txtId.Size = new System.Drawing.Size(240, 26);
+			this.txtId.TabIndex = 4;
+			// 
+			// btnDeleteThisMission
+			// 
+			this.btnDeleteThisMission.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnDeleteThisMission.Location = new System.Drawing.Point(54, 133);
+			this.btnDeleteThisMission.Name = "btnDeleteThisMission";
+			this.btnDeleteThisMission.Size = new System.Drawing.Size(232, 43);
+			this.btnDeleteThisMission.TabIndex = 6;
+			this.btnDeleteThisMission.Text = "Delete";
+			this.btnDeleteThisMission.UseVisualStyleBackColor = true;
 			// 
 			// ucMissionPropEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.btnDeleteThisMission);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtId);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.txtDescription);
 			this.Controls.Add(this.label1);
@@ -114,6 +127,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtDescription;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtId;
+		private System.Windows.Forms.Button btnDeleteThisMission;
 	}
 }

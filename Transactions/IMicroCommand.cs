@@ -40,7 +40,12 @@ namespace CommandTransactionsPrototype.Transactions
 		public void SetValue<T>(T obj, Expression<Func<T, object>> propertyLambda, object value)
 		{
 			var propertyInfo = ReflectionHelper.GetPropertyInfo(propertyLambda);
-			var command = new McrSetProperty(obj, propertyInfo, value);
+			SetValue(obj, propertyInfo, value);
+		}
+
+		public void SetValue(object obj, PropertyInfo propInfo, object value)
+		{
+			var command = new McrSetProperty(obj, propInfo, value);
 			_provider.AddCommand(command);
 			command.ExecuteForward();
 		}

@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using CommandTransactionsPrototype.Transactions;
 
 namespace CommandTransactionsPrototype.Commands
 {
-	public class CommandAddTask : ICommand
+	public class EditFieldCommand: ICommand
 	{
-		private readonly Engine _engine;
 		private readonly ITransactionProvider _transactionProvider;
 
-		public CommandAddTask(Engine engine, ITransactionProvider transactionProvider)
+		public EditFieldCommand(ITransactionProvider transactionProvider)
 		{
-			_engine = engine;
 			_transactionProvider = transactionProvider;
 		}
-
 		public bool CanBeExecutedOn(params object[] obj)
 		{
-			var engine = obj[0] as Mission;
-			return engine != null;
+			if (obj[0] == null)
+				return false;
+			var propInfo = (PropertyInfo)obj[1];
+			if (propInfo.Name == "Id")
+				return false;
+			return true;
 		}
 
 		public void InitiateExecution(params object[] obj)
@@ -34,15 +35,13 @@ namespace CommandTransactionsPrototype.Commands
 
 			var tran = _transactionProvider.GetCurrentTransaction();
 
-			tran.CaptureMacroState("CommandAddTask");
+			var propInfo = (PropertyInfo) obj[1];
+			tran.CaptureMacroState(string.Format("Edit [{0}]", propInfo.Name));
 
-			var mission = (Mission)obj[0];
-
-			var task = new MissionTask();
-
-			tran.Helper.AddItem(mission.Tasks, task);
+			tran.Helper.SetValue(obj[0], propInfo, obj[2]);
 
 			tran.Commit();
+
 		}
 	}
 }

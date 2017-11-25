@@ -1,60 +1,49 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows.Forms;
-//using CommandTransactionsPrototype.Transactions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using CommandTransactionsPrototype.Transactions;
 
-//namespace CommandTransactionsPrototype.Commands
-//{
-//	public class CommandDeleteTask : ICommand
-//	{
-//		private readonly TreeView _trv;
+namespace CommandTransactionsPrototype.Commands
+{
+	public class CommandDeleteTask : ICommand
+	{
+		private readonly Engine _engine;
+		private readonly ITransactionProvider _transactionProvider;
 
-//		private readonly Engine _engine;
-//		private readonly ITransactionProvider _transactionProvider;
+		public CommandDeleteTask(Engine engine, ITransactionProvider transactionProvider)
+		{
+			_engine = engine;
+			_transactionProvider = transactionProvider;
+		}
 
-//		public CommandDeleteTask(TreeView trv, Engine engine, ITransactionProvider transactionProvider)
-//		{
-//			_trv = trv;
-//			_engine = engine;
-//			_transactionProvider = transactionProvider;
-//		}
-
-//		public bool CanBeExecutedNow
-//		{
-//			get
-//			{
-//				var curNode = _trv.SelectedNode;
-//				if (curNode != null)
-//				{
-//					var task = curNode.Tag as MissionTask;
-//					return task != null;
-//				}
-//				return false;
-//			}
-//		}
+		public bool CanBeExecutedOn(params object[] obj)
+		{
+			var task = obj[0] as MissionTask;
+			return task != null;
+		}
 
 
-//		public void InitiateExecution()
-//		{
-//			if (!CanBeExecutedNow)
-//			{
-//				throw new InvalidOperationException("Cannot be executed!");
-//			}
+		public void InitiateExecution(params object[] obj)
+		{
+			if (!CanBeExecutedOn(obj))
+			{
+				throw new InvalidOperationException("Cannot be executed!");
+			}
 
-//			var tran = _transactionProvider.GetCurrentTransaction();
+			var tran = _transactionProvider.GetCurrentTransaction();
 
-//			tran.CaptureMacroState("CommandDeleteMission");
+			tran.CaptureMacroState("CommandDeleteMission");
 
 
-//			var taskToDelete = (MissionTask) _trv.SelectedNode.Tag;
-//			var parentMission = (Mission) _trv.SelectedNode.Parent.Tag;
+			var taskToDelete = (MissionTask)obj[0];
+			var parentMission = (Mission)obj[1];
 
-//			tran.Helper.DeleteItem(parentMission.Tasks, taskToDelete);
+			tran.Helper.DeleteItem(parentMission.Tasks, taskToDelete);
 
-//			tran.Commit();
-//		}
-//	}
-//}
+			tran.Commit();
+		}
+	}
+}

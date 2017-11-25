@@ -31,7 +31,6 @@
 			this.components = new System.ComponentModel.Container();
 			this.btnRedo = new System.Windows.Forms.Button();
 			this.btnUndo = new System.Windows.Forms.Button();
-			this.btnRenderModel = new System.Windows.Forms.Button();
 			this.trvModel = new System.Windows.Forms.TreeView();
 			this.mnuCommonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.mnuAddMission = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +42,7 @@
 			this.btnAddMission = new System.Windows.Forms.Button();
 			this.trvHistory = new System.Windows.Forms.TreeView();
 			this.pnlProp = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.mnuCommonMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -68,17 +67,6 @@
 			this.btnUndo.Text = "Undo";
 			this.btnUndo.UseVisualStyleBackColor = true;
 			this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
-			// 
-			// btnRenderModel
-			// 
-			this.btnRenderModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRenderModel.Location = new System.Drawing.Point(595, 13);
-			this.btnRenderModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-			this.btnRenderModel.Name = "btnRenderModel";
-			this.btnRenderModel.Size = new System.Drawing.Size(302, 38);
-			this.btnRenderModel.TabIndex = 5;
-			this.btnRenderModel.Text = "Render model";
-			this.btnRenderModel.UseVisualStyleBackColor = true;
 			// 
 			// trvModel
 			// 
@@ -164,28 +152,26 @@
 			this.pnlProp.Size = new System.Drawing.Size(280, 535);
 			this.pnlProp.TabIndex = 13;
 			// 
-			// button1
+			// label1
 			// 
-			this.button1.Location = new System.Drawing.Point(441, 13);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(117, 49);
-			this.button1.TabIndex = 14;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.label1.Location = new System.Drawing.Point(353, 342);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(203, 131);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "Redo button might not be available when the are two or more possible ways. select" +
+    " needed node and redo should become available.";
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1194, 606);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.pnlProp);
 			this.Controls.Add(this.trvHistory);
 			this.Controls.Add(this.btnAddMission);
 			this.Controls.Add(this.btnRedo);
 			this.Controls.Add(this.btnUndo);
-			this.Controls.Add(this.btnRenderModel);
 			this.Controls.Add(this.trvModel);
 			this.Name = "Form1";
 			this.Text = "Form1";
@@ -199,7 +185,6 @@
 
 		private System.Windows.Forms.Button btnRedo;
 		private System.Windows.Forms.Button btnUndo;
-		private System.Windows.Forms.Button btnRenderModel;
 		private System.Windows.Forms.TreeView trvModel;
 		private System.Windows.Forms.ContextMenuStrip mnuCommonMenu;
 		private System.Windows.Forms.ToolStripMenuItem mnuAddMission;
@@ -211,7 +196,7 @@
 		private System.Windows.Forms.Button btnAddMission;
 		private System.Windows.Forms.TreeView trvHistory;
 		private System.Windows.Forms.Panel pnlProp;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label1;
 	}
 }
 

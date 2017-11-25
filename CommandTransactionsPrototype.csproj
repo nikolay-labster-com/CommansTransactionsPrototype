@@ -53,6 +53,7 @@
     <Compile Include="Commands\CommandAddMission.cs" />
     <Compile Include="Commands\CommandRedo.cs" />
     <Compile Include="Commands\CommandUndo.cs" />
+    <Compile Include="Commands\EditFieldCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -78,6 +79,7 @@
     <Compile Include="Transactions\IMicroCommand.cs" />
     <Compile Include="Transactions\StateHistoryTree.cs" />
     <Compile Include="Transactions\TranScope.cs" />
+    <Compile Include="UiCommandControl.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
